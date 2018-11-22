@@ -49,11 +49,7 @@ public class MainActivity extends Activity {
     private void setPermissionForM() {
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.WRITE_CONTACTS,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                android.Manifest.permission.READ_SMS,
-                android.Manifest.permission.CAMERA
+                Manifest.permission.ACCESS_FINE_LOCATION
         };
 
         if(!hasPermissions(this, PERMISSIONS)){
@@ -75,18 +71,12 @@ public class MainActivity extends Activity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Map<String, Integer> perms = new HashMap<String, Integer>();
         // Initial
-        perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
         perms.put(Manifest.permission.ACCESS_COARSE_LOCATION, PackageManager.PERMISSION_GRANTED);
         perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
-        perms.put(Manifest.permission.CAMERA, PackageManager.PERMISSION_GRANTED);
-        perms.put(Manifest.permission.READ_PHONE_STATE, PackageManager.PERMISSION_GRANTED);
         for (int i = 0; i < permissions.length; i++)
             perms.put(permissions[i], grantResults[i]);
-        if (perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                && perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                && perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                && perms.get(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-                && perms.get(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+        if (perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // All Permissions Granted
             displaySplashScreen();
         } else {
@@ -97,4 +87,3 @@ public class MainActivity extends Activity {
 
     }
 }
-
